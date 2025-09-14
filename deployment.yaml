@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: countries-api
+  namespace: countries-api
+  labels:
+    app: countries-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: countries-api
+  template:
+    metadata:
+      labels:
+        app: countries-api
+    spec:
+      containers:
+      - name: countries-api
+        image: ghcr.io/YOUR_USERNAME/countries-api:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: ASPNETCORE_URLS
+          value: "http://+:80"
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        livenessProbe:
+          httpGet:
+            path: /countries
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /countries
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
