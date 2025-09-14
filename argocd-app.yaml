@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/YOUR_USERNAME/countries-api-k8s.git
+    repoURL: https://github.com/mamunreza/countries-api-k8s.git
     targetRevision: main
     path: .
   destination:

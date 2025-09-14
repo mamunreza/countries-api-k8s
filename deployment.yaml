@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: countries-api
-        image: ghcr.io/YOUR_USERNAME/countries-api:latest
+        image: ghcr.io/mamunreza/countries-api:latest
         ports:
         - containerPort: 80
         env:
@@ -42,3 +42,5 @@ spec:
             port: 80
           initialDelaySeconds: 5
           periodSeconds: 5
+      imagePullSecrets:
+      - name: ghcr-secret
